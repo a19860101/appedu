@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="jquery-1.12.4.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("nav a").click(function(){
+                var _target = $(this).data("target");
+//                console.log("#"+_target);
+                var _offset = $("#"+_target).offset().top;
+//                console.log(_offset);
+                $("html,body").animate({
+                    scrollTop:_offset
+                });
+                return false;
+            });
+            $("#gotop").click(function(){
+                $("html,body").animate({
+                    scrollTop:0
+                });
+//                return false;
+            });
+            $("#gotop").hide();
+            $(window).scroll(function(){
+                var h = $("html,body").scrollTop();
+                console.log(h);
+                if(h>800){
+                    $("#gotop").fadeIn();
+                }else{
+                    $("#gotop").fadeOut();
+                }
+            });
+            
+        })
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: tahoma;
+        }
+        body {
+/*            background-image: linear-gradient(#ffd3e4,#d3d3ff,#d3ffe9,#faffd3);*/
+            background-image: linear-gradient(#ff609d,#3e3eff,#3fff9f,#e3ff0a);
+        }
+        nav {
+            text-align: center;
+            padding: 15px;
+            background-color: #3c3c3c;
+            position: fixed;
+            width: 100%;
+        }
+        nav a {
+            text-decoration: none;
+            color: #eee;
+            margin: 0 20px;
+        }
+        div{
+            height: 1200px;
+        }
+        #about {
+/*            background-color: #2fafff;*/
+        }
+        #works {
+/*            background-color: #ff4d84;*/
+        }
+        #service {
+/*            background-color: #cfff4c;*/
+        }
+        #blog {
+/*            background-color: #eee;*/
+        }
+        #contact {
+/*            background-color: #003b55;*/
+        }
+        #gotop {
+            display: block;
+            width: 60px;
+            height: 60px;
+            position: fixed;
+            background-color: #242424;
+            right: 15px;
+            bottom: 15px;
+            z-index: 9999;
+            text-align: center;
+            line-height: 60px;
+            color: #fff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#" data-target="about">About</a>
+        <a href="#" data-target="works">Works</a>
+        <a href="#" data-target="service">Service</a>
+        <a href="#" data-target="blog">blog</a>
+        <a href="#" data-target="contact">Contact</a>
+    </nav>
+    <div id="about"></div>
+    <div id="works"></div>
+    <div id="service"></div>
+    <div id="blog"></div>
+    <div id="contact"></div>
+    <a href="javascript:;" id="gotop">TOP</a>
+</body>
+</html>
